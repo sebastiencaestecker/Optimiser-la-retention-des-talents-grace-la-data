@@ -64,21 +64,22 @@ CALCULATE(
     FILTER(DimEmployee, DimEmployee[Attrition] = "Yes")
 )
 
-
+```
 Mesure le pourcentage d’attrition globale.
 Le DIVIDE() est utilisé pour éviter les erreurs de division par zéro.
+```dax
 % Attrition Rate = 
 DIVIDE([InactiveEmployees], [TotalEmployees])
-
-
+```
 
 Calcule la note moyenne attribuée par les managers lors des revues de performance.
+```dax
 Avg Manager Rating = 
 AVERAGE(FactPerformanceRating[ManagerRating])
-
-
+```
 
 Utilise une relation inactive (via USERELATIONSHIP) entre l’environnement de travail et une table de niveaux de satisfaction (DimSatisfiedLevel).
+```dax
 EnvironmentSatisfaction = 
 CALCULATE (
     MAX ( FactPerformanceRating[EnvironmentSatisfaction] ),
@@ -88,8 +89,10 @@ CALCULATE (
     )
 )
 
+```
 
 Affiche la date de la dernière évaluation si elle existe, ou "No Review Yet" sinon.
+```dax
 LastReviewDate = 
 IF (
     MAX(FactPerformanceRating[ReviewDate]) = BLANK(),
@@ -97,3 +100,4 @@ IF (
     MAX(FactPerformanceRating[ReviewDate])
 )
 
+```
