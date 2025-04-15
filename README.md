@@ -49,60 +49,44 @@ Ce projet m’a permis de :
 - Explorer des thématiques humaines comme l’inclusion, la satisfaction et la diversité salariale.
 
 
-// Calcule le nombre total d'employés inactifs (ayant quitté l'entreprise)
-InactiveEmployees = 
-CALCULATE(
-    [TotalEmployees],
-    FILTER(DimEmployee, DimEmployee[Attrition] = "Yes")
-)
 
-// Calcule le taux d'attrition global (% d'employés ayant quitté)
-% Attrition Rate = 
-DIVIDE([InactiveEmployees], [TotalEmployees])
-// Utilise DIVIDE pour éviter les erreurs de division par zéro
-
-// Moyenne des notes données par les managers
-Avg Manager Rating = 
-AVERAGE(FactPerformanceRating[ManagerRating])
-
-// Niveau de satisfaction à l’environnement de travail, avec relation inactive activée
-EnvironmentSatisfaction = 
-CALCULATE(
-    MAX(FactPerformanceRating[EnvironmentSatisfaction]),
-    USERELATIONSHIP(
-        FactPerformanceRating[EnvironmentSatisfaction], 
-        DimSatisfiedLevel[SatisfactionID]
-    )
-)
-// Active manuellement une relation entre la table des évaluations et les niveaux de satisfaction
-// Utilisation de MAX ici à revoir selon ton modèle – AVERAGE pourrait être plus adapté si plusieurs valeurs
-
-// Date de la dernière revue de performance, ou "No Review Yet" si aucune n’existe
-LastReviewDate = 
-IF(
-    MAX(FactPerformanceRating[ReviewDate]) = BLANK(),
-    "No Review Yet",
-    MAX(FactPerformanceRating[ReviewDate])
 )
 
 ## 🧮 Quelques formules DAX utilisées
 
 ```dax
-InactiveEmployees = CALCULATE([TotalEmployees], FILTER(DimEmployee, DimEmployee[Attrition] = "Yes"))
-% Attrition Rate = DIVIDE([InactiveEmployees], [TotalEmployees])
-Avg Manager Rating = 
+
+### 🔹 InactiveEmployees
+```dax
+Calcule le nombre total d'employés ayant quitté l'entreprise (Attrition = "Yes").
+InactiveEmployees = 
+CALCULATE(
+    [TotalEmployees],
+    FILTER(DimEmployee, DimEmployee[Attrition] = "Yes")
 )
+Mesure le pourcentage d’attrition globale.
+Le DIVIDE() est utilisé pour éviter les erreurs de division par zéro.
+% Attrition Rate = 
+DIVIDE([InactiveEmployees], [TotalEmployees])
 
+Calcule la note moyenne attribuée par les managers lors des revues de performance.
+Avg Manager Rating = 
+AVERAGE(FactPerformanceRating[ManagerRating])
 
+Utilise une relation inactive (via USERELATIONSHIP) entre l’environnement de travail et une table de niveaux de satisfaction (DimSatisfiedLevel).
 EnvironmentSatisfaction = 
 CALCULATE (
     MAX ( FactPerformanceRating[EnvironmentSatisfaction] ),
-    USERELATIONSHIP ( FactPerformanceRating[EnvironmentSatisfaction], DimSatisfiedLevel[SatisfactionID] )
+    USERELATIONSHIP (
+        FactPerformanceRating[EnvironmentSatisfaction], 
+        DimSatisfiedLevel[SatisfactionID]
+    )
 )
-
+Affiche la date de la dernière évaluation si elle existe, ou "No Review Yet" sinon.
 LastReviewDate = 
 IF (
-    MAX ( FactPerformanceRating[ReviewDate] ) = BLANK (),
+    MAX(FactPerformanceRating[ReviewDate]) = BLANK(),
     "No Review Yet",
-    MAX ( FactPerformanceRating[ReviewDate] )
+    MAX(FactPerformanceRating[ReviewDate])
 )
+
