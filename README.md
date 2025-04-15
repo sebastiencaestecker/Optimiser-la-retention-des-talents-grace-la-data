@@ -53,11 +53,9 @@ Ce projet m’a permis de :
 
 ## Quelques formules DAX utilisées
 
-```dax
-
-
 
 Calcule le nombre total d'employés ayant quitté l'entreprise (Attrition = "Yes").
+```dax
 InactiveEmployees = 
 CALCULATE(
     [TotalEmployees],
