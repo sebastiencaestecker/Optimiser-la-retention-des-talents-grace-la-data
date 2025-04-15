@@ -56,7 +56,7 @@ Ce projet m’a permis de :
 
 ```dax
 
-### 🔹 InactiveEmployees
+
 
 Calcule le nombre total d'employés ayant quitté l'entreprise (Attrition = "Yes").
 InactiveEmployees = 
@@ -64,14 +64,20 @@ CALCULATE(
     [TotalEmployees],
     FILTER(DimEmployee, DimEmployee[Attrition] = "Yes")
 )
+
+
 Mesure le pourcentage d’attrition globale.
 Le DIVIDE() est utilisé pour éviter les erreurs de division par zéro.
 % Attrition Rate = 
 DIVIDE([InactiveEmployees], [TotalEmployees])
 
+
+
 Calcule la note moyenne attribuée par les managers lors des revues de performance.
 Avg Manager Rating = 
 AVERAGE(FactPerformanceRating[ManagerRating])
+
+
 
 Utilise une relation inactive (via USERELATIONSHIP) entre l’environnement de travail et une table de niveaux de satisfaction (DimSatisfiedLevel).
 EnvironmentSatisfaction = 
@@ -82,6 +88,8 @@ CALCULATE (
         DimSatisfiedLevel[SatisfactionID]
     )
 )
+
+
 Affiche la date de la dernière évaluation si elle existe, ou "No Review Yet" sinon.
 LastReviewDate = 
 IF (
