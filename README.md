@@ -1,4 +1,4 @@
-# 🎯 Projet Data Analyst - Analyse de l’Attrition RH chez Atlas Labs (Power BI + SQL + DAX)
+# Projet Data Analyst - Analyse de l’Attrition RH chez Atlas Labs (Power BI + SQL + DAX)
 
 > *“Et si les données pouvaient prévenir les départs avant qu’ils ne surviennent ?”*
 
@@ -6,7 +6,7 @@ Ce projet explore les causes de l’attrition des employés au sein d’**Atlas 
 
 ---
 
-## 🧭 Objectif métier
+## Objectif métier
 
 **Secteur ciblé :** Ressources Humaines (RH)
 **Problématique :**
@@ -14,25 +14,24 @@ Ce projet explore les causes de l’attrition des employés au sein d’**Atlas 
 
 ---
 
-## 🧱 Méthodologie (STAR)
+## Méthodologie
 
-### **S – Situation**
 Dans un contexte de tension sur le marché de l’emploi, notamment dans la tech, l’entreprise constate un taux d’attrition préoccupant (16,1 %) .
 L’entreprise fictive Atlas Labs, en croissance rapide, souhaite comprendre pourquoi certains profils quittent plus souvent que d’autres, malgré un investissement constant dans le bien-être et le développement interne.
 
-### **T – Tâche**
+### But du projet
 - Analyser les données historiques RH et de performance.
 - Identifier les facteurs associés à un départ (profil, poste, satisfaction, etc.).
 - Concevoir un tableau de bord dynamique pour guider la stratégie RH.
 
-### **A – Actions**
+### Processus d’analyse
 - Nettoyage & modélisation des données SQL (employés, rôles, salaires, évaluations).
 - Création de mesures DAX personnalisées (voir ci-dessous).
 - Construction de 4 pages Power BI : **Overview**, **Demographics**, **Performance Tracker**, **Attrition**.
 - Ajout de filtres dynamiques (ancienneté, genre, poste, fréquence des déplacements…).
 - Ajouté une dimension inclusion et diversité, en croisant les données d’ethnicité, de genre et d’âge avec les salaires moyens pour identifier les écarts à surveiller.
 
-### **R – Résultats**
+### Résultats obtenus
 - Identification de **postes à fort turnover** : Sales Reps, RH, Data Scientists.
 - Mise en évidence de **facteurs aggravants** : heures supplémentaires, voyages fréquents, faible ancienneté.
 - **Cibler les profils** en perte de satisfaction, avant que la situation ne se dégrade
@@ -52,7 +51,7 @@ Ce projet m’a permis de :
 
 )
 
-## 🧮 Quelques formules DAX utilisées
+## Quelques formules DAX utilisées
 
 ```dax
 
