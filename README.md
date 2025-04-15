@@ -4,7 +4,7 @@
 
 Ce projet explore les causes de l’attrition des employés au sein d’**Atlas Labs**, une entreprise tech fictive. À travers une analyse croisée des données RH (effectifs, démographie, performance, conditions de travail), j’ai construit un **dashboard interactif Power BI** pour aider les RH à piloter la rétention des talents.
 
----
+
 
 ## Objectif métier
 
@@ -12,7 +12,7 @@ Ce projet explore les causes de l’attrition des employés au sein d’**Atlas 
 **Problématique :**
 > *Quels sont les profils les plus à risque de départ, et quels leviers activer pour améliorer la fidélisation des talents ?*
 
----
+
 
 ## Méthodologie
 
