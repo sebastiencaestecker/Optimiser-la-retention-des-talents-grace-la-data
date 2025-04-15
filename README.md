@@ -54,7 +54,7 @@ Ce projet m’a permis de :
 
 ## 🧮 Quelques formules DAX utilisées
 
-
+```dax
 
 ### 🔹 InactiveEmployees
 
