@@ -1,4 +1,4 @@
-# Projet Data Analyst - Analyse de l’Attrition RH chez Atlas Labs (Power BI + SQL + DAX)
+# Projet Data Analyst - Analyse de l’Attrition RH chez Atlas Labs (Power BI + Power Query + DAX)
 
 > *“Et si les données pouvaient prévenir les départs avant qu’ils ne surviennent ?”*
 
@@ -25,7 +25,7 @@ L’entreprise fictive Atlas Labs, en croissance rapide, souhaite comprendre pou
 - Concevoir un tableau de bord dynamique pour guider la stratégie RH.
 
 ### Processus d’analyse
-- Nettoyage & modélisation des données SQL (employés, rôles, salaires, évaluations).
+- Nettoyage & modélisation des données Power query (employés, rôles, salaires, évaluations).
 - Création de mesures DAX personnalisées (voir ci-dessous).
 - Construction de 4 pages Power BI : **Overview**, **Demographics**, **Performance Tracker**, **Attrition**.
 - Ajout de filtres dynamiques (ancienneté, genre, poste, fréquence des déplacements…).
@@ -43,7 +43,7 @@ L’entreprise fictive Atlas Labs, en croissance rapide, souhaite comprendre pou
 Ce projet m’a permis de :
 
 - Approfondir la modélisation temporelle et la gestion des jointures dans Power BI.
-- Renforcer mes compétences en DAX et SQL
+- Renforcer mes compétences en DAX et Power query
 - Concevoir un dashboard orienté utilisateur métier, simple et impactant.
 - Explorer des thématiques humaines comme l’inclusion, la satisfaction et la diversité salariale.
 
