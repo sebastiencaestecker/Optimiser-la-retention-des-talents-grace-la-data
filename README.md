@@ -43,8 +43,8 @@ L’entreprise fictive Atlas Labs, en croissance rapide, souhaite comprendre pou
 ### Intentions d’apprentissage
 Ce projet m’a permis de :
 
-- Approfondir la modélisation temporelle et la gestion des jointures dans Power BI et SQL.
-- Renforcer mes compétences en DAX
+- Approfondir la modélisation temporelle et la gestion des jointures dans Power BI.
+- Renforcer mes compétences en DAX et SQL
 - Concevoir un dashboard orienté utilisateur métier, simple et impactant.
 - Explorer des thématiques humaines comme l’inclusion, la satisfaction et la diversité salariale.
 
