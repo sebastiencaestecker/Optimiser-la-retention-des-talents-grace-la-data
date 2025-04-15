@@ -49,6 +49,41 @@ Ce projet m’a permis de :
 - Explorer des thématiques humaines comme l’inclusion, la satisfaction et la diversité salariale.
 
 
+// Calcule le nombre total d'employés inactifs (ayant quitté l'entreprise)
+InactiveEmployees = 
+CALCULATE(
+    [TotalEmployees],
+    FILTER(DimEmployee, DimEmployee[Attrition] = "Yes")
+)
+
+// Calcule le taux d'attrition global (% d'employés ayant quitté)
+% Attrition Rate = 
+DIVIDE([InactiveEmployees], [TotalEmployees])
+// Utilise DIVIDE pour éviter les erreurs de division par zéro
+
+// Moyenne des notes données par les managers
+Avg Manager Rating = 
+AVERAGE(FactPerformanceRating[ManagerRating])
+
+// Niveau de satisfaction à l’environnement de travail, avec relation inactive activée
+EnvironmentSatisfaction = 
+CALCULATE(
+    MAX(FactPerformanceRating[EnvironmentSatisfaction]),
+    USERELATIONSHIP(
+        FactPerformanceRating[EnvironmentSatisfaction], 
+        DimSatisfiedLevel[SatisfactionID]
+    )
+)
+// Active manuellement une relation entre la table des évaluations et les niveaux de satisfaction
+// Utilisation de MAX ici à revoir selon ton modèle – AVERAGE pourrait être plus adapté si plusieurs valeurs
+
+// Date de la dernière revue de performance, ou "No Review Yet" si aucune n’existe
+LastReviewDate = 
+IF(
+    MAX(FactPerformanceRating[ReviewDate]) = BLANK(),
+    "No Review Yet",
+    MAX(FactPerformanceRating[ReviewDate])
+)
 
 ## 🧮 Quelques formules DAX utilisées
 
@@ -64,44 +99,10 @@ CALCULATE (
     MAX ( FactPerformanceRating[EnvironmentSatisfaction] ),
     USERELATIONSHIP ( FactPerformanceRating[EnvironmentSatisfaction], DimSatisfiedLevel[SatisfactionID] )
 )
-DimDate = 
-VAR _minYear = YEAR(MIN(DimEmployee[HireDate]))
-VAR _maxYear = YEAR(MAX(DimEmployee[HireDate]))
-VAR _fiscalStart = 4 
 
-RETURN
-ADDCOLUMNS(
-    CALENDAR(
-                DATE(_minYear,1,1),
-                DATE(_maxYear,12,31)
-
-),
-
-"Year",YEAR([Date]),
-"Year Start",DATE( YEAR([Date]),1,1),
-"YearEnd",DATE( YEAR([Date]),12,31),
-"MonthNumber",MONTH([Date]),
-"MonthStart",DATE( YEAR([Date]), MONTH([Date]), 1),
-"MonthEnd",EOMONTH([Date],0),
-"DaysInMonth",DATEDIFF(DATE( YEAR([Date]), MONTH([Date]), 1),EOMONTH([Date],0),DAY)+1,
-"YearMonthNumber",INT(FORMAT([Date],"YYYYMM")),
-"YearMonthName",FORMAT([Date],"YYYY-MMM"),
-"DayNumber",DAY([Date]),
-"DayName",FORMAT([Date],"DDDD"),
-"DayNameShort",FORMAT([Date],"DDD"),
-"DayOfWeek",WEEKDAY([Date]),
-"MonthName",FORMAT([Date],"MMMM"),
-"MonthNameShort",FORMAT([Date],"MMM"),
-"Quarter",QUARTER([Date]),
-"QuarterName","Q"&FORMAT([Date],"Q"),
-"YearQuarterNumber",INT(FORMAT([Date],"YYYYQ")),
-"YearQuarterName",FORMAT([Date],"YYYY")&" Q"&FORMAT([Date],"Q"),
-"QuarterStart",DATE( YEAR([Date]), (QUARTER([Date])*3)-2, 1),
-"QuarterEnd",EOMONTH(DATE( YEAR([Date]), QUARTER([Date])*3, 1),0),
-"WeekNumber",WEEKNUM([Date]),
-"WeekStart", [Date]-WEEKDAY([Date])+1,
-"WeekEnd",[Date]+7-WEEKDAY([Date]),
-"FiscalYear",if(_fiscalStart=1,YEAR([Date]),YEAR([Date])+ QUOTIENT(MONTH([Date])+ (13-_fiscalStart),13)),
-"FiscalQuarter",QUARTER( DATE( YEAR([Date]),MOD( MONTH([Date])+ (13-_fiscalStart) -1 ,12) +1,1) ),
-"FiscalMonth",MOD( MONTH([Date])+ (13-_fiscalStart) -1 ,12) +1
+LastReviewDate = 
+IF (
+    MAX ( FactPerformanceRating[ReviewDate] ) = BLANK (),
+    "No Review Yet",
+    MAX ( FactPerformanceRating[ReviewDate] )
 )
